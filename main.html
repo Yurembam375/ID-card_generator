@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Idproject UI</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+
+	<form id="addUserDataForm">
+		<label for="id">ID:</label>
+		<input type="text" id="id" name="id">
+
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name">
+
+		<label for="addres">Address:</label>
+		<input type="text" id="addres" name="addres">
+
+		<label for="gender">Gender:</label>
+		<select id="gender" name="gender">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+		</select>
+
+		<label for="dob">Date of Birth:</label>
+		<input type="date" id="dob" name="dob">
+
+		<label for="phoneNo">Phone Number:</label>
+		<input type="text" id="phoneNo" name="phoneNo">
+
+		<label for="bloodgroup">Blood Group:</label>
+		<input type="text" id="bloodgroup" name="bloodgroup">
+
+		<label for="fathername">Father Name:</label>
+		<input type="text" id="fathername" name="fathername">
+
+		<label for="isActive">Is Active:</label>
+		<label class="switch" for="isActive">
+			<input type="checkbox" id="isActive" name="isActive">
+			<span class="slider"></span>
+		</label>
+
+		<label for="identificationmark">Identification Mark:</label>
+		<input type="text" id="identificationmark" name="identificationmark">
+
+		<label for="identificationmark">Expiration time:</label>
+		<input type="text" id="Expiration time" name="Expiration time">
+
+		<button type="button" id="gett">Add User Data</button>
+
+	</form>
+
+
+	<script>
+		const g = document.getElementById("gett");
+
+		g.addEventListener('click', async () => {
+			const ganacheEndpoint = "http://localhost:8545";
+			const provider = new Web3.providers.HttpProvider(ganacheEndpoint);
+			const web3 = new Web3(provider);
+
+
+			const contractAddress = "0x674252e8160C13FacC46D3151e8f914F8B46Ce7B";
+			const gas = 6000000;
+
+			const contractABI = [
+				{
+					"inputs": [
+						{
+							"internalType": "int256",
+							"name": "id",
+							"type": "int256"
+						},
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "addres",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "gender",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "dob",
+							"type": "string"
+						},
+						{
+							"internalType": "int256",
+							"name": "phoneNo",
+							"type": "int256"
+						},
+						{
+							"internalType": "string",
+							"name": "bloodgroup",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "fathername",
+							"type": "string"
+						},
+						{
+							"internalType": "bool",
+							"name": "isActive",
+							"type": "bool"
+						},
+						{
+							"internalType": "string",
+							"name": "identification",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "blockTimestamp",
+							"type": "uint256"
+						}
+					],
+					"name": "addIDno",
+					"outputs": [],
+					"stateMutability": "nonpayable",
+					"type": "function"
+				},
+				{
+					"inputs": [],
+					"stateMutability": "nonpayable",
+					"type": "constructor"
+				},
+				{
+					"inputs": [],
+					"name": "admin",
+					"outputs": [
+						{
+							"internalType": "address",
+							"name": "",
+							"type": "address"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "int256",
+							"name": "_id",
+							"type": "int256"
+						}
+					],
+					"name": "getUserData",
+					"outputs": [
+						{
+							"components": [
+								{
+									"internalType": "int256",
+									"name": "id",
+									"type": "int256"
+								},
+								{
+									"internalType": "string",
+									"name": "name",
+									"type": "string"
+								},
+								{
+									"internalType": "string",
+									"name": "addes",
+									"type": "string"
+								},
+								{
+									"internalType": "string",
+									"name": "gender",
+									"type": "string"
+								},
+								{
+									"internalType": "string",
+									"name": "dob",
+									"type": "string"
+								},
+								{
+									"internalType": "int256",
+									"name": "phoneNo",
+									"type": "int256"
+								},
+								{
+									"internalType": "string",
+									"name": "bloodgroup",
+									"type": "string"
+								},
+								{
+									"internalType": "string",
+									"name": "fathername",
+									"type": "string"
+								},
+								{
+									"internalType": "bool",
+									"name": "isActive",
+									"type": "bool"
+								},
+								{
+									"internalType": "string",
+									"name": "identificationmark",
+									"type": "string"
+								},
+								{
+									"internalType": "bool",
+									"name": "isValid",
+									"type": "bool"
+								}
+							],
+							"internalType": "struct Idproject.UserData",
+							"name": "",
+							"type": "tuple"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "int256",
+							"name": "",
+							"type": "int256"
+						}
+					],
+					"name": "userExists",
+					"outputs": [
+						{
+							"internalType": "bool",
+							"name": "",
+							"type": "bool"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				}
+			];
+			const myContract = new web3.eth.Contract(contractABI, contractAddress);
+
+			const id = document.getElementById("id").value;
+			const name = document.getElementById("name").value;
+			const address = document.getElementById("addres").value; // Corrected variable name
+			const gender = document.getElementById("gender").value;
+			const dob = document.getElementById("dob").value;
+			const phoneNo = document.getElementById("phoneNo").value;
+			const bloodgroup = document.getElementById("bloodgroup").value;
+			const fathername = document.getElementById("fathername").value;
+			const isActive = document.getElementById("isActive").checked;
+			const identificationmark = document.getElementById("identificationmark").value;
+			const blockTimestamp = Math.floor(Date.now() / 1000); // Current timestamp
+
+			try {
+				const accounts = await web3.eth.getAccounts(); // Changed to web3.eth.getAccounts()
+				const result = await myContract.methods.addIDno(
+					id, name, address, gender, dob, phoneNo, bloodgroup, fathername, isActive, identificationmark, blockTimestamp
+				).send({ from: "0x2ec807518c39C9530939bC8124a88ED7d1a2eCDd", gas: gas }); // Assuming you want to use the first account
+				console.log("User data added:", result);
+				alert("Data Sucessfully Added")
+			} catch (error) {
+				console.error("Error adding user data:", error);
+			}
+			// }
+		});
+
+
+
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"></script>
+	<script src="app.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#phoneNo").intlTelInput({
+				initialCountry: "auto",
+				separateDialCode: true,
+				utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"
+			});
+		});
+	</script>
+
+</body>
+
+</html>

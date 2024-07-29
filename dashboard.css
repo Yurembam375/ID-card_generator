@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 1000px;
+    min-height: 350px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-family: "Times New Roman", Times, serif;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 50px;
+    /* Increase font size */
+    font-weight: bold;
+    /* Add bold font weight */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Add text shadow */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    text-align: center;
+}
+
+button {
+    padding: 30px 70px;
+    /* Increase padding to make the buttons bigger */
+    border: none;
+    border-radius: 10px;
+    /* Increase border radius for rounded corners */
+    background-color: #0d065f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 24px;
+    /* Increase font size */
+    margin: 70px;
+    /* Add margin to create space around the buttons */
+}
+
+button:hover {
+    background-color: #09054d;
+}

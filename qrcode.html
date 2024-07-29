@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+
+    <style>
+        h1,
+        h3 {
+            color: green;
+        }
+
+        body,
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>GeeksforGeeks</h1>
+        <h3>QR code generator using qrcode.js</h3>
+        <h3>To visit geeksforgeeks.org scan below code</h3>
+    </header>
+    <main>
+        <!-- Placeholder for QR code -->
+        <div id="barcode"></div>
+    </main>
+
+
+   
+
+    <script>
+        // Function to parse URL parameters
+        function getUrlParams() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return Object.fromEntries(urlParams.entries());
+        }
+
+        // Get the user data from URL parameters
+        const params = getUrlParams();
+        const userId = params.userId; // Retrieve userId from URL parameters
+
+        // Get the barcode placeholder element
+        const barcodeElement = document.getElementById('barcode');
+
+        // Generate the barcode with JsBarcode
+        JsBarcode(barcodeElement, userId, {
+            format: 'CODE128', // Choose the barcode format (CODE128, EAN, UPC, etc.)
+            displayValue: false // Hide the text below the barcode
+        });
+    </script>
+
+</body>
+
+</html>

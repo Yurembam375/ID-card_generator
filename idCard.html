@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="idCard.css">
+    <title>ID Card</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+ 
+    
+    <div class="container">
+        <button class="print-button " onclick="window.print()">Print</button> 
+        <div class="padding">
+            <div class="font">
+                <div class="top">
+                    <img src="download.png">
+                </div>
+                <div class="bottom">
+                    <p><span id="userDataName"></span></p>
+                    <p class="desi">ID No:<span id="userDataId"></span></p>
+                </div>
+                <div class="details-info">
+                    <p>Gender: <span id="userDataGender"></span> </p>
+                    <p>Phone No:<span id="userDataPhno"></span></p>
+                    <p>Father name: <span id="userDataFatherName"></span></p>
+                    <p>Valid Upto: <span id="userDataValidity"></span></p>
+                    <p>Date of Birth: <span id="userDataDOB"></span></p>
+                    <p>Blood Group: <span id="userDataBloodGroup"></span></p>
+                    <p>Identification Mark: <span id="userDataIdentificationMark"></span></p>
+                    <p>Address: <span id="userDataAddress"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <h1 class="Details"></h1>
+            <div class="qrcode" id="qrcode">
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        // Function to parse URL parameters
+        function getUrlParams() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return Object.fromEntries(urlParams.entries());
+        }
+
+        function qrcodeGenerator(userId) {
+            const qrCodeElement = document.getElementById('qrcode');
+            // Stringify the userData object
+            const userDataString = JSON.stringify(userId);
+            new QRCode(qrCodeElement, {
+                text: userDataString,
+                width: 150,
+                height: 150
+            });
+        }
+
+        // Get the user data from URL parameters
+        const params = getUrlParams();
+        const userId = params.userId; // Retrieve userId from URL parameters
+
+        // Now you can use userId to display the user data in the HTML
+        console.log('User ID:', userId); // Log the userId value to the console
+
+        const userData = {
+            name: params.name,
+            id: params.id,
+            phno: params.phoneNo,
+            gender: params.gender,
+            fatherName: params.fatherName,
+            validity: params.validity,
+            dob: params.dob,
+            bloodGroup: params.bloodGroup,
+            identificationMark: params.identificationMark,
+            address: params.address
+        };
+
+        // Now you can use userData to display the user data in the HTML
+        document.getElementById("userDataName").textContent = userData.name;
+        document.getElementById("userDataPhno").textContent = userData.phno;
+        document.getElementById("userDataId").textContent = userId;
+        document.getElementById("userDataGender").textContent = userData.gender;
+        document.getElementById("userDataFatherName").textContent = userData.fatherName;
+        document.getElementById("userDataValidity").textContent = userData.validity;
+        document.getElementById("userDataDOB").textContent = userData.dob;
+        document.getElementById("userDataBloodGroup").textContent = userData.bloodGroup;
+        document.getElementById("userDataIdentificationMark").textContent = userData.identificationMark;
+        document.getElementById("userDataAddress").textContent = userData.address;
+
+        // Generate QR code
+        qrcodeGenerator(userId);
+    </script>
+</body>
+
+</html>

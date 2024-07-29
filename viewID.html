@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User Data</title>
+    <link rel="stylesheet" href="viewid.css">
+</head>
+
+<body>
+    <form>
+        <h1>View User Data</h1>
+        <label for="userId">Enter User ID:</label>
+        <input type="text" id="userId">
+        <button type="button" id="gett">Get User Data</button>
+    </form>
+
+    <div id="userData" style="display: none;">
+        <!-- Move the Cancel button to the top -->
+        <div class="user-data-container">
+            <h2>User Data</h2>
+            <button type="button" class="cancel-button" onclick="closeUserData()">X</button>
+            <p><strong>Name:</strong> <span id="Name"></span></p>
+            <p><strong>Address:</strong> <span id="Address"></span></p>
+            <p><strong>Gender:</strong> <span id="Gender"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="DOB"></span></p>
+            <p><strong>Phone Number:</strong> <span id="PhoneNo"></span></p>
+            <p><strong>Blood Group:</strong> <span id="BloodGroup"></span></p>
+            <p><strong>Father Name:</strong> <span id="fathername"></span></p>
+            <p><strong>Active:</strong> <span id="Active"></span></p>
+            <p><strong>Identification Mark:</strong> <span id="IdentificationMark"></span></p>
+            <p><strong>Vali Upto:</strong> <span id="Validity"></span></p>
+
+            <button type="button" onclick="sendUserData()">
+                <a href="idCard.html" style="text-decoration: none; color: inherit;">
+                    Get ID</button>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        const g = document.getElementById("gett");
+        g.addEventListener('click', async () => {
+
+            const ganacheEndpoint = "http://localhost:8545";
+            const provider = new Web3.providers.HttpProvider(ganacheEndpoint);
+            const web3 = new Web3(provider);
+
+            const contractAddress = "0x674252e8160C13FacC46D3151e8f914F8B46Ce7B";
+            const gas = 6000000;
+
+
+            const contractABI = [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "id",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "addres",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "gender",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "dob",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "phoneNo",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "bloodgroup",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "fathername",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "bool",
+                            "name": "isActive",
+                            "type": "bool"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "identification",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "blockTimestamp",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "addIDno",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [],
+                    "name": "admin",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "_id",
+                            "type": "int256"
+                        }
+                    ],
+                    "name": "getUserData",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "int256",
+                                    "name": "id",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "name",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "addes",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "gender",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "dob",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "int256",
+                                    "name": "phoneNo",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "bloodgroup",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "fathername",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "bool",
+                                    "name": "isActive",
+                                    "type": "bool"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "identificationmark",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "bool",
+                                    "name": "isValid",
+                                    "type": "bool"
+                                }
+                            ],
+                            "internalType": "struct Idproject.UserData",
+                            "name": "",
+                            "type": "tuple"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "",
+                            "type": "int256"
+                        }
+                    ],
+                    "name": "userExists",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ];
+
+            const myContract = new web3.eth.Contract(contractABI, contractAddress);
+
+            const userId = document.getElementById("userId").value; // Get the user ID entered by the user
+
+            try {
+                const userData = await myContract.methods.getUserData(userId).call(); // Call the smart contract method to retrieve user data
+
+                // Update the UI with user data
+                updateUserUI(userData);
+            } catch (error) {
+                console.error("Error retrieving user data:", error);
+            }
+        });
+
+        function updateUserUI(userData) {
+            document.getElementById("Name").textContent = userData.name;
+            document.getElementById("Address").textContent = userData.addes;
+            document.getElementById("Gender").textContent = userData.gender;
+            document.getElementById("DOB").textContent = userData.dob;
+            document.getElementById("PhoneNo").textContent = userData.phoneNo;
+            document.getElementById("BloodGroup").textContent = userData.bloodgroup;
+            document.getElementById("fathername").textContent = userData.fathername;
+            document.getElementById("Active").textContent = userData.isActive ? 'Yes' : 'No';
+            document.getElementById("IdentificationMark").textContent = userData.identificationmark;
+            document.getElementById("Validity").textContent = userData.isValid;
+            // Show the user data section
+            document.getElementById("userData").style.display = "block";
+        }
+
+        function sendUserData() {
+            const userId = document.getElementById("userId").value;
+            const userData = {
+                // Replace these with actual user data
+                name: document.getElementById("Name").textContent,
+                address: document.getElementById("Address").textContent,
+                gender: document.getElementById("Gender").textContent,
+                dob: document.getElementById("DOB").textContent,
+                phoneNo: document.getElementById("PhoneNo").textContent,
+                bloodGroup: document.getElementById("BloodGroup").textContent,
+                fatherName: document.getElementById("fathername").textContent,
+                isActive: document.getElementById("Active").textContent,
+                identificationMark: document.getElementById("IdentificationMark").textContent,
+                validity: document.getElementById("Validity").textContent
+            };
+            const queryString = Object.keys(userData).map(key => key + '=' + encodeURIComponent(userData[key])).join('&');
+            window.location.href = `idCard.html?userId=${userId}&${queryString}`;
+        }
+
+
+        function closeUserData() {
+            document.getElementById("userData").style.display = "none";
+        }
+
+    </script>
+</body>
+
+</html>

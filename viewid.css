@@ -1,0 +1,131 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+form {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Hide the increment and decrement buttons */
+    position: relative;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /* Hide the increment and decrement buttons in Chrome and Safari */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    /* Additional styling for the inner spin button */
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button {
+    /* Additional styling for the outer spin button */
+    position: relative;
+    z-index: 2;
+}
+
+button[type="button"] {
+    background-color: #0d065f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+button[type="button"]:hover {
+    background-color: #09054d;
+}
+
+.user-info {
+    display: none;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-info h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.user-info p {
+    margin-bottom: 5px;
+}
+
+.user-info strong {
+    font-weight: bold;
+}
+
+.user-info span {
+    font-weight: normal;
+}
+.user-data-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    position: relative;
+}
+
+.cancel-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: white;
+}
+ 
+.cancel-button:hover {
+    background-color: darkred;
+}
+
+
+
